@@ -33,19 +33,22 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
         ///add the plane anchor if it's area is bigger than 1 meter
         if planeAnchor.extent.x * planeAnchor.extent.z > 1.0 {
             DispatchQueue.main.async {
-                let plane:Plane
                 switch (planeAnchor.alignment){
                     case .vertical:
-                        plane = Plane(anchor: planeAnchor, in: self.sceneView, material: self.defaultWallPlanesMaterial)
+                    let plane = Plane(anchor: planeAnchor, in: self.sceneView, material: self.defaultWallPlanesMaterial)
+                    node.addChildNode(plane)
+                    self.planes.append(plane)
                     case .horizontal:
-                        plane = Plane(anchor: planeAnchor, in: self.sceneView, material: self.defaultFloorPlanesMaterial)
+                    /// Delegate if a plane was already detected, if it was already detected, horizontal planes are no longer added
+                    if !self.floorDetected{
+                        let plane = Plane(anchor: planeAnchor, in: self.sceneView, material: self.defaultFloorPlanesMaterial)
+                        self.floorDetected  = true
+                        node.addChildNode(plane)
+                        self.planes.append(plane)
+                    }
                     @unknown default:
                         fatalError("Plane Anchor has no aligment property")
                 }
-                ////  Add the visualization to the ARKit-managed node so that it tracks
-                /// Changes in the plane anchor as plane estimation continues.
-                node.addChildNode(plane)
-                self.planes.append(plane)
             }
         }
         
@@ -64,7 +67,7 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
             planeGeometry.update(from: planeAnchor.geometry)
         }
         
-        // Update extent visualization to the anchor's new bounding rectangle.
+        /// Update extent visualization to the anchor's new bounding rectangle.
         if let extentGeometry = plane.extentNode.geometry as? SCNPlane {
             extentGeometry.width = CGFloat(planeAnchor.extent.x)
             extentGeometry.height = CGFloat(planeAnchor.extent.z)
@@ -86,13 +89,11 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         updateSessionInfoLabel(for: session.currentFrame!, trackingState: camera.trackingState)
-
+        /// if tracking state is normal, content can be placed
         switch camera.trackingState {
         case .notAvailable, .limited:
-            //statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)
             break
         case .normal:
-            //statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
             showVirtualContent()
         }
     }
@@ -141,7 +142,6 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     }
     
     // MARK: - Private methods
-    
     private func updateSessionInfoLabel(for frame: ARFrame, trackingState: ARCamera.TrackingState) {
         // Update the UI to provide feedback on the state of the AR experience.
         let message: String

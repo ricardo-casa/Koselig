@@ -65,7 +65,6 @@ class FloorMaterialSelectionViewController: UITableViewController {
         }
         /// Set the cell's name by the materal name
         cell.floorMaterialName = floorMaterials[indexPath.row].textureFilename
-        
         return cell
     }
     

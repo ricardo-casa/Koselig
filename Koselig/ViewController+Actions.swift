@@ -63,6 +63,7 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
                 guard let index = VirtualObject.availableObjects.firstIndex(of: object) else { continue }
                 objectsViewController.selectedVirtualObjectRows.insert(index)
             }
+            
         case .showWallMaterials:
             let wallMaterialsSelectionViewController = segue.destination as! WallMaterialSelectionViewController
             wallMaterialsSelectionViewController.wallMaterials = PlaneMaterial.availableWallMaterials

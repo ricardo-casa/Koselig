@@ -42,6 +42,8 @@ class ViewController: UIViewController {
     var defaultWallPlanesMaterial : PlaneMaterial = PlaneMaterial.availableWallMaterials[0]
     /// Default material to apply to new detected horizontal Planes
     var defaultFloorPlanesMaterial : PlaneMaterial = PlaneMaterial.availableFloorMaterials[0]
+    /// Flag to detect a single horizontal plane ("floor")
+    var floorDetected = false
 
     // MARK: - AR configuration properties
     /// Coordinates the loading and unloading of reference nodes for virtual objects.
@@ -61,11 +63,13 @@ class ViewController: UIViewController {
         /// First Node in Scene
         sceneView.scene.rootNode.addChildNode(focusSquare)
         
-        /// Adding a directional light to scene
-        
-        /// Adding icons to buttons
-        //addObjectButton.setTitle("", for: .normal)
-        //addObjectButton.setImage(UIImage(named: "livingroom.png"), for: .normal)
+        /// Adding a single directional light to scene
+        let directionalLight = SCNNode()
+            directionalLight.light = SCNLight()
+            directionalLight.light!.type = .directional
+            directionalLight.light!.color = UIColor(white: 1.0, alpha: 1.0)
+            directionalLight.eulerAngles = SCNVector3(x: 0, y: 0, z: 0)
+        sceneView.scene.rootNode.addChildNode(directionalLight)
     }
     /// - Tag: StartARSession
     override func viewDidAppear(_ animated: Bool) {

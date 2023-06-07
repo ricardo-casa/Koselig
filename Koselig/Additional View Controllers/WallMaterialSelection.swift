@@ -38,7 +38,7 @@ class WallMaterialSelectionViewController: UITableViewController {
     var selectedWallMaterial : Int = -1
     /// A reference of the main scene view
     weak var sceneView: ARSCNView?
-    
+    /// A protocol reference
     weak var delegate: WallMaterialSelectionViewControllerDelegate?
 
     

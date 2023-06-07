@@ -70,7 +70,7 @@ class VirtualObject: SCNReferenceNode {
 @available(iOS 13.0, *)
 extension VirtualObject {
     // MARK: Static Properties and Methods
-    /// Loads all the model objects within `Models.scnassets`.
+    /// Loads all the model objects within `Models.scnassets` and creates the virtual objects 
     static let availableObjects: [VirtualObject] = {
         let modelsURL = Bundle.main.url(forResource: "Assets.scnassets/Models", withExtension: nil)!
         let fileEnumerator = FileManager().enumerator(at: modelsURL, includingPropertiesForKeys: [])!

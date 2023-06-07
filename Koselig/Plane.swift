@@ -40,7 +40,7 @@ class Plane: SCNNode {
         
         extentNode = SCNNode(geometry: extentPlane)
         extentNode.simdPosition = anchor.center
-        
+    
         /// `SCNPlane` is vertically oriented in its local coordinate space, so
         /// rotate it to match the orientation of `ARPlaneAnchor`.
         extentNode.eulerAngles.x = -.pi / 2
@@ -76,8 +76,17 @@ class Plane: SCNNode {
     private func setupMeshVisualStyle() {
         // Make the plane visualization semitransparent to clearly show real-world placement.
         meshNode.opacity = 0.8
-         
-        material.diffuse.contentsTransform = SCNMatrix4MakeScale(material.scaleX, material.scaleY, 0)
+        
+        /// - Tag: Setting scale factors
+        /// Every material has different pixel density/meter so every time plane changes its size
+        /// a new scale factor is needed.
+        let widthScale = (Float(self.extentPlane.width)  / self.material.scaleX).rounded()
+        
+        let heigthScale = (Float(self.extentPlane.height)  / self.material.scaleY).rounded()
+        
+        /// Material Settings Could be different, this case is only repeats the material by given a
+        /// scale factor
+        material.diffuse.contentsTransform = SCNMatrix4MakeScale(widthScale, heigthScale, 0)
         material.diffuse.wrapS = .repeat
         material.diffuse.wrapT = .repeat
         meshNode.geometry?.materials = [material]

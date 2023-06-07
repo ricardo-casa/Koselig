@@ -4,8 +4,10 @@ import ARKit
 class PlaneMaterial : SCNMaterial {
     var textureFilename: String
     var image: UIImage
+    /// the scales factor in m to repeat the texture
     var scaleX: Float
     var scaleY: Float
+    /// must match with plane alignment
     var allowedAlignment: ARRaycastQuery.TargetAlignment
     
     
@@ -39,12 +41,32 @@ class PlaneMaterial : SCNMaterial {
 
 extension PlaneMaterial {
     static let availableWallMaterials: [PlaneMaterial] =
-        [PlaneMaterial(textureFilename: "tales", scaleX: 15, scaleY: 5, allowedAlignment: .vertical),
+    [PlaneMaterial(textureFilename: "Void", scaleX: 1, scaleY: 1, allowedAlignment: .vertical),
+    
+    PlaneMaterial(textureFilename: "Talavera", scaleX: 0.3, scaleY: 0.3, allowedAlignment: .vertical),
          
-         PlaneMaterial(textureFilename: "white-bricks-1.1", scaleX: 15, scaleY: 15, allowedAlignment: .vertical),
+     PlaneMaterial(textureFilename: "White Bricks", scaleX: 0.35, scaleY: 0.3, allowedAlignment: .vertical),
          
-         PlaneMaterial(textureFilename: "green-tiles-1.1", scaleX: 15, scaleY: 5, allowedAlignment: .vertical),]
+     PlaneMaterial(textureFilename: "Green Tiles", scaleX: 0.3, scaleY: 0.3, allowedAlignment: .vertical),
+        
+     PlaneMaterial(textureFilename: "Triangles Wallpaper", scaleX: 0.6, scaleY: 0.6, allowedAlignment: .vertical),
+     
+     PlaneMaterial(textureFilename: "Artdeco Shells", scaleX: 0.282, scaleY: 0.4335, allowedAlignment: .vertical),
+     
+     PlaneMaterial(textureFilename: "Silver Diamonds", scaleX: 0.42, scaleY: 0.6, allowedAlignment: .vertical),]
 
     static let availableFloorMaterials: [PlaneMaterial] =
-        [PlaneMaterial(textureFilename: "woodFloor", scaleX: 10, scaleY: 10, allowedAlignment: .horizontal)]
+    [PlaneMaterial(textureFilename: "Void", scaleX: 1, scaleY: 1, allowedAlignment: .horizontal),
+    
+     PlaneMaterial(textureFilename: "Light Parquet", scaleX: 1.2, scaleY: 1.2, allowedAlignment: .horizontal),
+     
+     PlaneMaterial(textureFilename: "Gray Parquet", scaleX: 0.664, scaleY: 0.373, allowedAlignment: .horizontal),
+    
+     PlaneMaterial(textureFilename: "Poona Tiles", scaleX: 0.333, scaleY: 0.333, allowedAlignment: .horizontal),
+    
+     PlaneMaterial(textureFilename: "Travertine Tiles", scaleX: 0.28, scaleY: 0.28, allowedAlignment: .horizontal),
+    
+     PlaneMaterial(textureFilename: "Triangle Light Parquet", scaleX: 1.213, scaleY: 1.213, allowedAlignment: .horizontal),
+     
+     PlaneMaterial(textureFilename: "Abstract Mosaic", scaleX: 0.3, scaleY: 0.3, allowedAlignment: .horizontal),]
 }
