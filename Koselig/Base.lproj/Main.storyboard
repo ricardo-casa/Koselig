@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="WeU-Be-bo7">
             <objects>
-                <viewController id="7dh-A0-qGE" customClass="ViewController" customModule="ARKitBasics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7dh-A0-qGE" customClass="ViewController" customModule="Koselig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="loo-cG-myf">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,22 +25,20 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing AR session." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCE-IA-wLv">
                                             <rect key="frame" x="8" y="8" width="168" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="7j0-wl-8x9"/>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="awR-PG-icx"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="hCE-IA-wLv" firstAttribute="leading" secondItem="pkc-hu-yuO" secondAttribute="leading" constant="8" id="6LO-f0-XCW"/>
-                                        <constraint firstAttribute="bottom" secondItem="hCE-IA-wLv" secondAttribute="bottom" constant="8" id="9pn-kU-sot"/>
-                                        <constraint firstAttribute="trailing" secondItem="hCE-IA-wLv" secondAttribute="trailing" constant="14" id="IgQ-c0-8xG"/>
-                                        <constraint firstItem="hCE-IA-wLv" firstAttribute="top" secondItem="pkc-hu-yuO" secondAttribute="top" constant="8" id="Y6E-Fz-pF4"/>
+                                        <constraint firstItem="hCE-IA-wLv" firstAttribute="leading" secondItem="pkc-hu-yuO" secondAttribute="leadingMargin" id="RUQ-xp-Bkc"/>
+                                        <constraint firstItem="hCE-IA-wLv" firstAttribute="top" secondItem="pkc-hu-yuO" secondAttribute="topMargin" id="jbd-w1-aKf"/>
+                                        <constraint firstItem="hCE-IA-wLv" firstAttribute="bottom" secondItem="pkc-hu-yuO" secondAttribute="bottomMargin" id="lgj-nX-gu5"/>
                                     </constraints>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="d5Y-57-0vW"/>
+                                </constraints>
                                 <blurEffect style="light"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -48,57 +46,96 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="oqW-JQ-6GC">
-                                <rect key="frame" x="157" y="872" width="116" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="oqW-JQ-6GC">
+                                <rect key="frame" x="157.33333333333334" y="872" width="115.66666666666666" height="26"/>
                             </pageControl>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="CameraSetup.scn" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS" customClass="VirtualObjectARView" customModule="ARKitBasics" customModuleProvider="target">
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="CameraSetup.scn" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS" customClass="VirtualObjectARView" customModule="Koselig" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <connections>
                                     <outlet property="delegate" destination="7dh-A0-qGE" id="6YV-aS-dot"/>
                                 </connections>
                             </arscnView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v5n-aE-vu4">
-                                <rect key="frame" x="37" y="725" width="347" height="32"/>
+                            <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBY-Or-7e4" customClass="RoundButton" customModule="Koselig" customModuleProvider="target">
+                                <rect key="frame" x="57" y="717" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="White Concrete"/>
-                                    <segment title="White Bricks"/>
-                                    <segment title="Green Tiles"/>
-                                </segments>
-                                <connections>
-                                    <action selector="stepper:" destination="7dh-A0-qGE" eventType="valueChanged" id="day-Cx-U9k"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBY-Or-7e4">
-                                <rect key="frame" x="140" y="542" width="150" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Object Selection"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <buttonConfiguration key="configuration" style="plain" image="livingroom" buttonSize="small"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="showVirtualObjectSelectionViewController" destination="7dh-A0-qGE" eventType="touchUpInside" id="PWa-FR-aUt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWN-cj-Kaz" customClass="RoundButton" customModule="Koselig" customModuleProvider="target">
+                                <rect key="frame" x="267" y="717" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <buttonConfiguration key="configuration" style="plain" image="firewall" buttonSize="small"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showPlaneWallMaterialSelectionController" destination="7dh-A0-qGE" eventType="touchUpInside" id="k0C-xs-hNt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8g-PE-4w6" customClass="RoundButton" customModule="Koselig" customModuleProvider="target">
+                                <rect key="frame" x="162" y="716" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <size key="titleShadowOffset" width="5" height="5"/>
+                                <buttonConfiguration key="configuration" style="plain" image="floor" imagePadding="0.0" buttonSize="small"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showPlaneFloorMaterialSelectionController" destination="7dh-A0-qGE" eventType="touchUpInside" id="YYd-vc-YDf"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="71x-2l-AWw"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="8rY-15-6Ru"/>
-                            <constraint firstItem="IBY-Or-7e4" firstAttribute="centerX" secondItem="loo-cG-myf" secondAttribute="centerX" id="Kw7-EB-5bx"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="71x-2l-AWw" secondAttribute="leading" id="QIa-Ri-qJo"/>
-                            <constraint firstItem="71x-2l-AWw" firstAttribute="trailing" secondItem="BrB-h1-WRS" secondAttribute="trailing" id="a3B-9u-pb1"/>
-                            <constraint firstItem="71x-2l-AWw" firstAttribute="bottom" secondItem="37h-bD-Iyn" secondAttribute="bottom" constant="33" id="j5m-RQ-OjM"/>
-                            <constraint firstItem="37h-bD-Iyn" firstAttribute="leading" secondItem="71x-2l-AWw" secondAttribute="leading" constant="15" id="lLK-x7-VyJ"/>
-                            <constraint firstItem="IBY-Or-7e4" firstAttribute="top" secondItem="71x-2l-AWw" secondAttribute="top" constant="483" id="rHh-7P-bf5"/>
-                            <constraint firstAttribute="top" secondItem="BrB-h1-WRS" secondAttribute="top" id="ulI-xa-35w"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="71x-2l-AWw" secondAttribute="leading" id="11W-LA-dbx"/>
+                            <constraint firstItem="oqW-JQ-6GC" firstAttribute="bottom" secondItem="71x-2l-AWw" secondAttribute="bottom" id="8KK-ka-bhL"/>
+                            <constraint firstItem="37h-bD-Iyn" firstAttribute="leading" secondItem="71x-2l-AWw" secondAttribute="leading" constant="15" id="Ckh-lQ-tR2"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="centerX" secondItem="oqW-JQ-6GC" secondAttribute="centerX" id="DS8-FK-tEb"/>
+                            <constraint firstItem="oqW-JQ-6GC" firstAttribute="top" secondItem="37h-bD-Iyn" secondAttribute="bottom" constant="7" id="NQ0-nF-QgU"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="loo-cG-myf" secondAttribute="topMargin" constant="-59" id="U7z-mg-E1T"/>
+                            <constraint firstItem="71x-2l-AWw" firstAttribute="trailing" secondItem="37h-bD-Iyn" secondAttribute="trailing" constant="225" id="ZKh-0M-J18"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="centerX" secondItem="loo-cG-myf" secondAttribute="centerX" id="i4k-of-48w"/>
+                            <constraint firstItem="BrB-h1-WRS" firstAttribute="centerY" secondItem="loo-cG-myf" secondAttribute="centerY" id="oFy-AZ-gZV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addFloorMaterialButton" destination="p8g-PE-4w6" id="diA-gc-vbT"/>
                         <outlet property="addObjectButton" destination="IBY-Or-7e4" id="GcY-79-Epm"/>
+                        <outlet property="addWallMaterialButton" destination="hWN-cj-Kaz" id="WpR-xz-5sb"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="E4v-Qz-Ygh"/>
-                        <outlet property="segmentControlButton" destination="v5n-aE-vu4" id="f9h-mP-1cU"/>
                         <outlet property="sessionInfoLabel" destination="hCE-IA-wLv" id="fqx-0o-IdX"/>
                         <outlet property="sessionInfoView" destination="37h-bD-Iyn" id="e6g-gN-reW"/>
                         <segue destination="XEJ-VX-pkh" kind="popoverPresentation" identifier="showObjects" popoverAnchorView="IBY-Or-7e4" id="ctg-TA-21h">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                        <segue destination="Yu6-Db-J67" kind="popoverPresentation" identifier="showWallMaterials" popoverAnchorView="hWN-cj-Kaz" id="js1-Rp-PFO">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                        <segue destination="TYX-bC-7r5" kind="popoverPresentation" identifier="showFloorMaterials" popoverAnchorView="p8g-PE-4w6" id="RUX-Yc-Jvf">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
@@ -107,18 +144,18 @@
                 <customObject id="dh1-aA-Oau" customClass="SCNScene"/>
                 <command title="Item" id="bNK-OJ-LUu"/>
             </objects>
-            <point key="canvasLocation" x="2595" y="191"/>
+            <point key="canvasLocation" x="2593.953488372093" y="190.55793991416311"/>
         </scene>
         <!--Virtual Object Selection View Controller Scene-->
         <scene sceneID="FV1-w3-D0c">
             <objects>
-                <tableViewController title="Virtual Object Selection View Controller Scene" id="XEJ-VX-pkh" customClass="VirtualObjectSelectionViewController" customModule="ARKitBasics" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Virtual Object Selection View Controller Scene" id="XEJ-VX-pkh" customClass="VirtualObjectSelectionViewController" customModule="Koselig" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fuE-6X-Xgu">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ObjectCell" id="msw-BX-Xxu" customClass="ObjectCell" customModule="ARKitBasics" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ObjectCell" id="msw-BX-Xxu" customClass="ObjectCell" customModule="Koselig" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="msw-BX-Xxu" id="xc6-py-50R">
@@ -144,15 +181,119 @@
                             <outlet property="delegate" destination="XEJ-VX-pkh" id="JPD-Jx-5P1"/>
                         </connections>
                     </tableView>
+                    <size key="freeformSize" width="430" height="400"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHQ-vU-PCA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3909.7674418604652" y="190.55793991416311"/>
+            <point key="canvasLocation" x="3988" y="-178"/>
+        </scene>
+        <!--Wall Material Selection View Controller-->
+        <scene sceneID="GXU-9h-Lei">
+            <objects>
+                <tableViewController id="Yu6-Db-J67" customClass="WallMaterialSelectionViewController" customModule="Koselig" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="l9m-Eh-f4I">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WallMaterialCell" id="nVe-mZ-f7m" customClass="WallMaterialCell" customModule="Koselig" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="430" height="42.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVe-mZ-f7m" id="Z6U-O2-qmu">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="42.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ey-4p-uus">
+                                            <rect key="frame" x="20" y="11.000000000000002" width="397" height="20.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="9ey-4p-uus" secondAttribute="bottom" constant="11" id="RBv-ZQ-gSz"/>
+                                        <constraint firstAttribute="trailing" secondItem="9ey-4p-uus" secondAttribute="trailing" constant="13" id="Umh-SM-y5D"/>
+                                        <constraint firstItem="9ey-4p-uus" firstAttribute="leading" secondItem="Z6U-O2-qmu" secondAttribute="leading" constant="20" symbolic="YES" id="gR0-ya-mJb"/>
+                                        <constraint firstItem="9ey-4p-uus" firstAttribute="top" secondItem="Z6U-O2-qmu" secondAttribute="top" constant="11" id="vaC-3b-b5L"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="wallMaterialTitleLabel" destination="9ey-4p-uus" id="56X-7C-sel"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Yu6-Db-J67" id="ofQ-kj-7gd"/>
+                            <outlet property="delegate" destination="Yu6-Db-J67" id="KaL-s1-WuA"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="430" height="400"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sW6-eg-iJI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3988" y="191"/>
+        </scene>
+        <!--Floor Material Selection View Controller-->
+        <scene sceneID="YbY-Qb-bKd">
+            <objects>
+                <tableViewController id="TYX-bC-7r5" customClass="FloorMaterialSelectionViewController" customModule="Koselig" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ohX-Y0-jzY">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FloorMaterialCell" id="hQC-z4-9yk" customClass="FloorMaterialCell" customModule="Koselig" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hQC-z4-9yk" id="txY-o4-Is8">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aml-ad-4mE">
+                                            <rect key="frame" x="20" y="-10" width="410" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="floorMaterialTitleLabel" destination="aml-ad-4mE" id="ceQ-QW-BPd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="delegate" destination="TYX-bC-7r5" id="9zY-MX-KUz"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="430" height="400"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xFp-i3-3hV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3987.9069767441861" y="581.33047210300435"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="IBY-Or-7e4">
+            <size key="intrinsicContentSize" width="62.666666666666664" height="52.666666666666664"/>
+        </designable>
+        <designable name="hWN-cj-Kaz">
+            <size key="intrinsicContentSize" width="62.666666666666664" height="52.666666666666664"/>
+        </designable>
+        <designable name="p8g-PE-4w6">
+            <size key="intrinsicContentSize" width="62.666666666666664" height="52.666666666666664"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="firewall" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="floor" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="livingroom" width="42.666667938232422" height="42.666667938232422"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

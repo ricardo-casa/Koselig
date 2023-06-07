@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		1909AD352A1DA04200EC6D5C /* Assets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 1909AD342A1D9F9900EC6D5C /* Assets.scnassets */; };
 		1909AD382A1DDFBE00EC6D5C /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1909AD372A1DDFBE00EC6D5C /* VirtualObject.swift */; };
-		1941B04B29F51D7600B1C07D /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1941B04A29F51D7500B1C07D /* Material.swift */; };
+		191B58342A2C25BD004F586A /* ObjectInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B58332A2C25BD004F586A /* ObjectInteraction.swift */; };
+		191B58362A2C2648004F586A /* ThresholdPanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B58352A2C2648004F586A /* ThresholdPanGesture.swift */; };
+		191B583A2A2CEFE1004F586A /* WallMaterialSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191B58392A2CEFE1004F586A /* WallMaterialSelection.swift */; };
+		1941B04B29F51D7600B1C07D /* PlaneMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1941B04A29F51D7500B1C07D /* PlaneMaterial.swift */; };
 		1944ABF62A2653420052DF8C /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944ABF52A2653420052DF8C /* FocusSquare.swift */; };
 		1944ABF82A2653660052DF8C /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944ABF72A2653660052DF8C /* FocusSquareSegment.swift */; };
 		194C653E2A2BEE4F007C26E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 195AFB072A1C133C00779EBC /* Assets.xcassets */; };
@@ -19,6 +22,10 @@
 		194EABC02A1E89D400ED3014 /* VirtualObjectARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EABBF2A1E89D400ED3014 /* VirtualObjectARView.swift */; };
 		195AFAFB2A1BD4EF00779EBC /* ViewController+ARSCNViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195AFAFA2A1BD4EF00779EBC /* ViewController+ARSCNViewDelegate.swift */; };
 		195AFAFD2A1BD92700779EBC /* ViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195AFAFC2A1BD92700779EBC /* ViewController+Actions.swift */; };
+		19A043832A2ED458000BE36C /* ViewController+WallMaterialSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A043822A2ED458000BE36C /* ViewController+WallMaterialSelection.swift */; };
+		19A043852A2F7B87000BE36C /* FloorMaterialSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A043842A2F7B87000BE36C /* FloorMaterialSelection.swift */; };
+		19A043872A2F7F94000BE36C /* ViewController+FloorMaterialSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A043862A2F7F94000BE36C /* ViewController+FloorMaterialSelection.swift */; };
+		19EACBB82A30F49D001F6E3F /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EACBB72A30F49D001F6E3F /* RoundButton.swift */; };
 		5C028ED021029E1000C7AB1E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C028ECF21029E1000C7AB1E /* Utilities.swift */; };
 		5C16677F20E6E21D00B25B7E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16677E20E6E21D00B25B7E /* Plane.swift */; };
 		842316E01F2030C300D189D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842316DF1F2030C300D189D1 /* AppDelegate.swift */; };
@@ -30,7 +37,10 @@
 /* Begin PBXFileReference section */
 		1909AD342A1D9F9900EC6D5C /* Assets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Assets.scnassets; sourceTree = "<group>"; };
 		1909AD372A1DDFBE00EC6D5C /* VirtualObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
-		1941B04A29F51D7500B1C07D /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
+		191B58332A2C25BD004F586A /* ObjectInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInteraction.swift; sourceTree = "<group>"; };
+		191B58352A2C2648004F586A /* ThresholdPanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThresholdPanGesture.swift; sourceTree = "<group>"; };
+		191B58392A2CEFE1004F586A /* WallMaterialSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallMaterialSelection.swift; sourceTree = "<group>"; };
+		1941B04A29F51D7500B1C07D /* PlaneMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneMaterial.swift; sourceTree = "<group>"; };
 		1944ABF52A2653420052DF8C /* FocusSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
 		1944ABF72A2653660052DF8C /* FocusSquareSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquareSegment.swift; sourceTree = "<group>"; };
 		194EABB82A1E81B400ED3014 /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
@@ -40,6 +50,10 @@
 		195AFAFA2A1BD4EF00779EBC /* ViewController+ARSCNViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ARSCNViewDelegate.swift"; sourceTree = "<group>"; };
 		195AFAFC2A1BD92700779EBC /* ViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Actions.swift"; sourceTree = "<group>"; };
 		195AFB072A1C133C00779EBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		19A043822A2ED458000BE36C /* ViewController+WallMaterialSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+WallMaterialSelection.swift"; sourceTree = "<group>"; };
+		19A043842A2F7B87000BE36C /* FloorMaterialSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorMaterialSelection.swift; sourceTree = "<group>"; };
+		19A043862A2F7F94000BE36C /* ViewController+FloorMaterialSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+FloorMaterialSelection.swift"; sourceTree = "<group>"; };
+		19EACBB72A30F49D001F6E3F /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		254A1C90254A0E7000000001 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		5C028ECF21029E1000C7AB1E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		5C16677E20E6E21D00B25B7E /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -73,6 +87,14 @@
 			path = "Virtual Object";
 			sourceTree = "<group>";
 		};
+		191B58382A2CEE08004F586A /* Plane Material */ = {
+			isa = PBXGroup;
+			children = (
+				1941B04A29F51D7500B1C07D /* PlaneMaterial.swift */,
+			);
+			path = "Plane Material";
+			sourceTree = "<group>";
+		};
 		1944ABF42A26530D0052DF8C /* Focus Square */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				194EABBD2A1E87F600ED3014 /* VirtualObjectSelection.swift */,
+				191B58392A2CEFE1004F586A /* WallMaterialSelection.swift */,
+				19A043842A2F7B87000BE36C /* FloorMaterialSelection.swift */,
 			);
 			path = "Additional View Controllers";
 			sourceTree = "<group>";
@@ -127,14 +151,19 @@
 				195AFAFA2A1BD4EF00779EBC /* ViewController+ARSCNViewDelegate.swift */,
 				195AFAFC2A1BD92700779EBC /* ViewController+Actions.swift */,
 				194EABBA2A1E857800ED3014 /* ViewController+ObjectSelection.swift */,
+				19A043822A2ED458000BE36C /* ViewController+WallMaterialSelection.swift */,
+				19A043862A2F7F94000BE36C /* ViewController+FloorMaterialSelection.swift */,
 				194EABBF2A1E89D400ED3014 /* VirtualObjectARView.swift */,
 				5C16677E20E6E21D00B25B7E /* Plane.swift */,
-				1941B04A29F51D7500B1C07D /* Material.swift */,
 				5C028ECF21029E1000C7AB1E /* Utilities.swift */,
+				191B58332A2C25BD004F586A /* ObjectInteraction.swift */,
+				191B58352A2C2648004F586A /* ThresholdPanGesture.swift */,
+				191B58382A2CEE08004F586A /* Plane Material */,
 				1944ABF42A26530D0052DF8C /* Focus Square */,
 				1909AD362A1DDF8C00EC6D5C /* Virtual Object */,
 				194EABBC2A1E87AC00ED3014 /* Additional View Controllers */,
 				842316E51F2030C300D189D1 /* Main.storyboard */,
+				19EACBB72A30F49D001F6E3F /* RoundButton.swift */,
 				842316EA1F2030C300D189D1 /* LaunchScreen.storyboard */,
 				842316ED1F2030C300D189D1 /* Info.plist */,
 			);
@@ -225,11 +254,15 @@
 			files = (
 				194EABC02A1E89D400ED3014 /* VirtualObjectARView.swift in Sources */,
 				195AFAFB2A1BD4EF00779EBC /* ViewController+ARSCNViewDelegate.swift in Sources */,
+				19A043832A2ED458000BE36C /* ViewController+WallMaterialSelection.swift in Sources */,
 				842316E41F2030C300D189D1 /* ViewController.swift in Sources */,
-				1941B04B29F51D7600B1C07D /* Material.swift in Sources */,
+				191B58342A2C25BD004F586A /* ObjectInteraction.swift in Sources */,
+				1941B04B29F51D7600B1C07D /* PlaneMaterial.swift in Sources */,
 				5C16677F20E6E21D00B25B7E /* Plane.swift in Sources */,
 				1944ABF82A2653660052DF8C /* FocusSquareSegment.swift in Sources */,
 				1909AD382A1DDFBE00EC6D5C /* VirtualObject.swift in Sources */,
+				19EACBB82A30F49D001F6E3F /* RoundButton.swift in Sources */,
+				191B583A2A2CEFE1004F586A /* WallMaterialSelection.swift in Sources */,
 				195AFAFD2A1BD92700779EBC /* ViewController+Actions.swift in Sources */,
 				842316E01F2030C300D189D1 /* AppDelegate.swift in Sources */,
 				1944ABF62A2653420052DF8C /* FocusSquare.swift in Sources */,
@@ -237,6 +270,9 @@
 				194EABBB2A1E857800ED3014 /* ViewController+ObjectSelection.swift in Sources */,
 				194EABBE2A1E87F600ED3014 /* VirtualObjectSelection.swift in Sources */,
 				194EABB92A1E81B400ED3014 /* VirtualObjectLoader.swift in Sources */,
+				19A043852A2F7B87000BE36C /* FloorMaterialSelection.swift in Sources */,
+				191B58362A2C2648004F586A /* ThresholdPanGesture.swift in Sources */,
+				19A043872A2F7F94000BE36C /* ViewController+FloorMaterialSelection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

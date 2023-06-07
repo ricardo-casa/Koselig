@@ -16,44 +16,45 @@ extension UIColor {
 class Plane: SCNNode {
     let meshNode: SCNNode
     let extentNode: SCNNode
-    var material: Material
+    var material: PlaneMaterial
     let extentPlane: SCNPlane
-
+    let anchor: ARPlaneAnchor
     
     /// - Tag: VisualizePlane
-    init(anchor: ARPlaneAnchor, in sceneView: ARSCNView, material: Material) {
+    init(anchor: ARPlaneAnchor, in sceneView: ARSCNView, material: PlaneMaterial) {
         
         #if targetEnvironment(simulator)
         #error("ARKit is not supported in iOS Simulator. Connect a physical iOS device and select it as your Xcode run destination, or select Generic iOS Device as a build-only destination.")
         #else
-
-        // Create a mesh to visualize the estimated shape of the plane.
+        
+        self.anchor = anchor
+        
+        /// Create a mesh to visualize the estimated shape of the plane.
         guard let meshGeometry = ARSCNPlaneGeometry(device: sceneView.device!)
             else { fatalError("Can't create plane geometry") }
         meshGeometry.update(from: anchor.geometry)
         meshNode = SCNNode(geometry: meshGeometry)
         
-        // Create a node to visualize the plane's bounding rectangle.
+        /// Create a node to visualize the plane's bounding rectangle.
         self.extentPlane = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
         
         extentNode = SCNNode(geometry: extentPlane)
         extentNode.simdPosition = anchor.center
         
-        // `SCNPlane` is vertically oriented in its local coordinate space, so
-        // rotate it to match the orientation of `ARPlaneAnchor`.
+        /// `SCNPlane` is vertically oriented in its local coordinate space, so
+        /// rotate it to match the orientation of `ARPlaneAnchor`.
         extentNode.eulerAngles.x = -.pi / 2
         
-        //adding material
+        ///adding material
         self.material = material
        
-        
         super.init()
         
-        //adding scale of material
+        ///adding scale of material
         self.setupMeshVisualStyle()
         self.setupExtentVisualStyle()
 
-        // Add the plane extent and plane geometry as child nodes so they appear in the scene.
+        /// Add the plane extent and plane geometry as child nodes so they appear in the scene.
         addChildNode(meshNode)
         addChildNode(extentNode)
         
@@ -64,7 +65,7 @@ class Plane: SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Public Methods
-    func updatePlaneMaterial(material_: Material) {
+    func updatePlaneMaterial(material_: PlaneMaterial) {
         self.material = material_
         self.setupMeshVisualStyle()
     }
@@ -91,7 +92,7 @@ class Plane: SCNNode {
         
         material.diffuse.contents = UIColor.planeColor
 
-        // Use a SceneKit shader modifier to render only the borders of the plane.
+        /// Use a SceneKit shader modifier to render only the borders of the plane.
         guard let path = Bundle.main.path(forResource: "wireframe_shader", ofType: "metal", inDirectory: "Assets.scnassets")
             else { fatalError("Can't find wireframe shader") }
         do {

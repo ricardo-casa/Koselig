@@ -9,62 +9,63 @@ import UIKit
 import SceneKit
 import ARKit
 
-// MARK: - Globals
-var segmentIndex: Int = 0
-
-
-// MARK: -
 @available(iOS 13.0, *)
 class ViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var sessionInfoView: UIView!
+    
     @IBOutlet weak var sessionInfoLabel: UILabel!
     
-    
     @IBOutlet var sceneView: VirtualObjectARView!
-    
-    @IBOutlet var segmentControlButton: UISegmentedControl!
+        
     @IBOutlet weak var addObjectButton: UIButton!
-
+    
+    @IBOutlet weak var addWallMaterialButton: UIButton!
+    
+    @IBOutlet weak var addFloorMaterialButton: UIButton!
+    
+    
     // MARK: - UI Elements
     
     /// The view controller that displays the virtual object selection menu.
     var objectsViewController: VirtualObjectSelectionViewController?
-    
+    ///The view Controller that displays the available wall Materials
+    var wallMaterialsSelectionViewController: WallMaterialSelectionViewController?
+    ///The view Controller that displays the available floor Materials
+    var floorMaterialsSelectionViewController: FloorMaterialSelectionViewController?
+    /// A type of crosshair that focus a specific point in planes
     var focusSquare = FocusSquare()
+    /// An array that stores all the found planes
+    var planes : [Plane] = []
+    /// Default material to apply to new detected vertical Planes
+    var defaultWallPlanesMaterial : PlaneMaterial = PlaneMaterial.availableWallMaterials[0]
+    /// Default material to apply to new detected horizontal Planes
+    var defaultFloorPlanesMaterial : PlaneMaterial = PlaneMaterial.availableFloorMaterials[0]
 
-    
     // MARK: - AR configuration properties
-    
     /// Coordinates the loading and unloading of reference nodes for virtual objects.
     let virtualObjectLoader = VirtualObjectLoader()
-    
     /// A serial queue used to coordinate adding or removing nodes from the scene.
     let updateQueue = DispatchQueue(label: "com.example.apple-samplecode.arkitexample.serialSceneKitQueue")
-    
     /// A type which manages gesture manipulation of virtual content in the scene.
-    //lazy var virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView, viewController: self)
-    
+    lazy var virtualObjectInteraction = VirtualObjectInteraction(sceneView: sceneView, viewController: self)
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
         return sceneView.session
     }
     
-    // MARK: - Other variables
-    let wallMaterials: [Material] = [
-        Material(textureFilename: "tales", scaleX: 15, scaleY: 5),
-        Material(textureFilename: "white-bricks-1.1", scaleX: 15, scaleY: 15),
-        Material(textureFilename: "green-tiles-1.1", scaleX: 15, scaleY: 5)
-    ]
-    
-    let floorMaterials: [Material] = [
-        Material(textureFilename: "woodFloor", scaleX: 10, scaleY: 10),
-    ]
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
-        // Set up scene content.
+        /// Set up scene content.
+        /// First Node in Scene
         sceneView.scene.rootNode.addChildNode(focusSquare)
+        
+        /// Adding a directional light to scene
+        
+        /// Adding icons to buttons
+        //addObjectButton.setTitle("", for: .normal)
+        //addObjectButton.setImage(UIImage(named: "livingroom.png"), for: .normal)
     }
     /// - Tag: StartARSession
     override func viewDidAppear(_ animated: Bool) {
@@ -85,53 +86,32 @@ class ViewController: UIViewController {
         
         // Show debug UI to view performance metrics (e.g. frames per second).
         sceneView.showsStatistics = true
-        
-        addGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // Pause the view's AR session.
         sceneView.session.pause()
     }
     
     // MARK: - Focus Square
-
     func updateFocusSquare(isObjectVisible: Bool) {
-           
-        /*
-        if isObjectVisible {
-            focusSquare.hide()
-        } else {
-            focusSquare.unhide()
-        }
-         */
         
-        // Realizamos un raycast siempre que la camara se encuentre en un estado normal
+        /// Perform a raycast whenever the camera is in a normal state
         if let camera = session.currentFrame?.camera, case .normal = camera.trackingState,
-            let query = sceneView.getRaycastQuery(),
-            let result = sceneView.castRay(for: query).first {
+           let query = sceneView.getRaycastQuery(),
+           let result = sceneView.castRay(for: query).first {
             
             updateQueue.async {
                 self.sceneView.scene.rootNode.addChildNode(self.focusSquare)
                 self.focusSquare.state = .detecting(raycastResult: result, camera: camera)
             }
-            
-        } else {
+        } else { 
             updateQueue.async {
                 self.focusSquare.state = .initializing
                 self.sceneView.pointOfView?.addChildNode(self.focusSquare)
             }
-            //addObjectButton.isHidden = true
             objectsViewController?.dismiss(animated: false, completion: nil)
         }
-    }
-    
-    // MARK: - IBActions
-    
-    // SegmentControl Action
-    @IBAction func stepper(_ sender: UISegmentedControl){
-        segmentIndex = Int(sender.selectedSegmentIndex)
     }
 }

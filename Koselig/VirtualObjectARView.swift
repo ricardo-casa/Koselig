@@ -13,7 +13,6 @@ import ARKit
 class VirtualObjectARView: ARSCNView {
 
     // MARK: Position Testing
-    
     /// Hit tests against the `sceneView` to find an object at the provided point.
     func virtualObject(at point: CGPoint) -> VirtualObject? {
         let hitTestOptions: [SCNHitTestOption: Any] = [.boundingBoxOnly: true]

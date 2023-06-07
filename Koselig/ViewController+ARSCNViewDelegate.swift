@@ -13,17 +13,9 @@ import ARKit
 extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     
     // MARK: - ARSCNViewDelegate
-    
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
-        /* NOT IMPORTANT AS I DONT NEED TO DELEGATE IF OBJECTS IS ON SCENE
-        let isAnyObjectInView = virtualObjectLoader.loadedObjects.contains { object in
-            return sceneView.isNode(object, insideFrustumOf: sceneView.pointOfView!)
-        }
-        */
-        
         DispatchQueue.main.async {
-            //print("is any object in view \(isAnyObjectInView)")
             self.updateFocusSquare(isObjectVisible: true)
             
             // If the object selection menu is open, update availability of items
@@ -36,32 +28,38 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     /// - Tag: PlaceARContent
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // Place content only for anchors found by plane detection.
+        ///Create an anchor for detected plane
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-            
-        let plane:Plane
-        switch (planeAnchor.alignment){
-        case .vertical:
-            plane = Plane(anchor: planeAnchor, in: sceneView, material: wallMaterials[segmentIndex])
-        case .horizontal:
-            plane = Plane(anchor: planeAnchor, in: sceneView, material: floorMaterials[0])
-        @unknown default:
-            fatalError("Plane Anchor has no aligment property")
+        ///add the plane anchor if it's area is bigger than 1 meter
+        if planeAnchor.extent.x * planeAnchor.extent.z > 1.0 {
+            DispatchQueue.main.async {
+                let plane:Plane
+                switch (planeAnchor.alignment){
+                    case .vertical:
+                        plane = Plane(anchor: planeAnchor, in: self.sceneView, material: self.defaultWallPlanesMaterial)
+                    case .horizontal:
+                        plane = Plane(anchor: planeAnchor, in: self.sceneView, material: self.defaultFloorPlanesMaterial)
+                    @unknown default:
+                        fatalError("Plane Anchor has no aligment property")
+                }
+                ////  Add the visualization to the ARKit-managed node so that it tracks
+                /// Changes in the plane anchor as plane estimation continues.
+                node.addChildNode(plane)
+                self.planes.append(plane)
+            }
         }
         
-        // Add the visualization to the ARKit-managed node so that it tracks
-        // changes in the plane anchor as plane estimation continues.
-        node.addChildNode(plane)
     }
     
     /// - Tag: UpdateARContent
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        // Update only anchors and nodes set up by `renderer(_:didAdd:for:)`.
+        /// Update only anchors and nodes set up by `renderer(_:didAdd:for:)`.
         guard let planeAnchor = anchor as? ARPlaneAnchor,
               let plane = node.childNodes.first as? Plane
         else { return }
         
         
-        // Update ARSCNPlaneGeometry to the anchor's new estimated shape.
+        /// Update `ARSCNPlaneGeometry` to the anchor's new estimated shape.
         if let planeGeometry = plane.meshNode.geometry as? ARSCNPlaneGeometry {
             planeGeometry.update(from: planeAnchor.geometry)
         }
@@ -72,18 +70,7 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
             extentGeometry.height = CGFloat(planeAnchor.extent.z)
             plane.extentNode.simdPosition = planeAnchor.center
         }
-        
-        // Update Plane Material
-        if  planeAnchor.alignment == .vertical{
-            plane.updatePlaneMaterial(material_: wallMaterials[segmentIndex])
-        }
-        else if planeAnchor.alignment == .horizontal{
-            plane.updatePlaneMaterial(material_: floorMaterials[0])
-        }
     }
-    
-    
-    
     
     // MARK: - ARSessionDelegate
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
@@ -113,7 +100,6 @@ extension ViewController: ARSCNViewDelegate, ARSessionDelegate {
     func showVirtualContent() {
         virtualObjectLoader.loadedObjects.forEach { $0.isHidden = false }
     }
-    
     // MARK: - ARSessionObserver
     
     func sessionWasInterrupted(_ session: ARSession) {

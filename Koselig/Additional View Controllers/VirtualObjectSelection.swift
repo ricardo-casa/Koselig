@@ -34,7 +34,6 @@ protocol VirtualObjectSelectionViewControllerDelegate: AnyObject {
 }
 
 /// A custom table view controller to allow users to select `VirtualObject`s for placement in the scene.
-
 @available(iOS 13.0, *)
 class VirtualObjectSelectionViewController: UITableViewController {
     

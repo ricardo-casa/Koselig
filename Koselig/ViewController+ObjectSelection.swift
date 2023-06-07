@@ -25,7 +25,7 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
                                                                   withInitialResult: virtualObject.mostRecentInitialPlacementResult)
         
         virtualObject.raycast = trackedRaycast
-        //virtualObjectInteraction.selectedObject = virtualObject
+        virtualObjectInteraction.selectedObject = virtualObject
         virtualObject.isHidden = false
     }
     
@@ -46,19 +46,16 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
             return
         }
         
-        /*
+        
         if virtualObject.allowedAlignment == .any && self.virtualObjectInteraction.trackedObject == virtualObject {
-         */
-            
-        if virtualObject.allowedAlignment == .any{
-            
+
             // If an object that's aligned to a surface is being dragged, then
             // smoothen its orientation to avoid visible jumps, and apply only the translation directly.
             virtualObject.simdWorldPosition = result.worldTransform.translation
             
             let previousOrientation = virtualObject.simdWorldTransform.orientation
             let currentOrientation = result.worldTransform.orientation
-            virtualObject.simdWorldOrientation = simd_slerp(previousOrientation, currentOrientation, 0.1)
+            virtualObject.simdWorldOrientation = simd_slerp(previousOrientation, currentOrientation, 0.15)
         } else {
             self.setTransform(of: virtualObject, with: result)
         }
@@ -96,10 +93,10 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
         virtualObjectLoader.loadVirtualObject(object, loadedHandler: { [unowned self] loadedObject in
             
             do {
+                ///Loading scene from a specified path,  and placing object into sceneView calling `scene renderer_`
                 let scene = try SCNScene(url: object.referenceURL, options: nil)
                 self.sceneView.prepare([scene], completionHandler: { _ in
                     DispatchQueue.main.async {
-                        print(loadedObject.modelName)
                         self.placeVirtualObject(loadedObject)
                     }
                 })
@@ -115,33 +112,10 @@ extension ViewController: VirtualObjectSelectionViewControllerDelegate {
             fatalError("Programmer error: Failed to lookup virtual object in scene.")
         }
         virtualObjectLoader.removeVirtualObject(at: objectIndex)
-        //virtualObjectInteraction.selectedObject = nil
+        virtualObjectInteraction.selectedObject = nil
         if let anchor = object.anchor {
             session.remove(anchor: anchor)
         }
     }
-
-    // MARK: Object Loading UI
-
-    func displayObjectLoadingUI() {
-        
-        //addObjectButton.setImage(#imageLiteral(resourceName: "buttonring"), for: [])
-
-        addObjectButton.isEnabled = false
-        //isRestartAvailable = false
-    }
-    
-    
-    func hideObjectLoadingUI() {
-        // Hide progress indicator.
-        //spinner.stopAnimating()
-        
-        //addObjectButton.setImage(#imageLiteral(resourceName: "add"), for: [])
-        //addObjectButton.setImage(#imageLiteral(resourceName: "addPressed"), for: [.highlighted])
-        
-        addObjectButton.isEnabled = true
-        //isRestartAvailable = true
-    }
-    
 }
 

@@ -77,23 +77,17 @@ extension VirtualObject {
 
         return fileEnumerator.compactMap { element in
             let url = element as! URL
-
             guard url.pathExtension == "scn" && !url.path.contains("lighting") else { return nil }
-
             return VirtualObject(url: url)
         }
     }()
-    
-    
     
     /// Returns a `VirtualObject` if one exists as an ancestor to the provided node.
     static func existingObjectContainingNode(_ node: SCNNode) -> VirtualObject? {
         if let virtualObjectRoot = node as? VirtualObject {
             return virtualObjectRoot
         }
-        
         guard let parent = node.parent else { return nil }
-        
         // Recurse up to check if the parent is a `VirtualObject`.
         return existingObjectContainingNode(parent)
     }
